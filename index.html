@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Devil's Bargain — Console RPG</title>
+  <style>
+    :root {
+      --bg: #06070a;
+      --card: rgba(255,255,255,0.03);
+      --accent: #ff6b6b;
+      --neon: #00ffc6;
+      --muted: #98a6a3;
+      --mono: "SFMono-Regular", Menlo, Monaco, "Roboto Mono", monospace;
+    }
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,Arial;background:
+      radial-gradient(600px 300px at 10% 10%, rgba(255,107,107,0.03), transparent 6%),
+      radial-gradient(500px 250px at 90% 90%, rgba(0,255,198,0.02), transparent 6%),
+      var(--bg); color:#e7f6f0; display:flex; align-items:center; justify-content:center; padding:28px; box-sizing:border-box;}
+    .card{
+      width:100%; max-width:980px; background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));
+      border-radius:14px; padding:28px; box-shadow: 0 12px 40px rgba(0,0,0,0.6); border:1px solid rgba(255,255,255,0.03);
+    }
+    .row {display:flex; gap:18px; align-items:center;}
+    .logo {width:72px; height:72px; border-radius:12px; display:grid; place-items:center; font-family:var(--mono); font-weight:800;
+      background: linear-gradient(135deg, #ff6b6b, #ffb86b); color:#090909; box-shadow: 0 8px 30px rgba(255,107,107,0.08);}
+    h1{margin:0;font-size:1.5rem}
+    p.lead{margin:8px 0 0 0; color:var(--muted)}
+    .instructions{margin-top:18px; display:flex; gap:12px; align-items:center; flex-wrap:wrap}
+    .kbd{background:rgba(255,255,255,0.03); padding:8px 10px; border-radius:8px; font-family:var(--mono); color:var(--neon); font-weight:700; border:1px solid rgba(255,255,255,0.02)}
+    .controls{margin-top:20px; display:flex; gap:12px; flex-wrap:wrap}
+    .btn{cursor:pointer; padding:10px 14px; border-radius:10px; border:0; font-weight:700; font-family:var(--mono); letter-spacing:0.02em}
+    .btn-primary{background:linear-gradient(90deg,var(--neon), #7fffd4); color:#021414}
+    .btn-ghost{background:transparent; color:#d0efe8; border:1px solid rgba(255,255,255,0.03)}
+    .small-note{margin-top:12px; color:var(--muted); font-size:0.9rem}
+    .links {margin-left:auto; display:flex; gap:10px}
+    .link-btn {background:transparent; border-radius:8px; padding:8px 10px; color:var(--neon); border:1px solid rgba(0,255,198,0.08); cursor:pointer; font-family:var(--mono)}
+    @media (max-width:640px){ .row{flex-direction:column; align-items:flex-start} .links{margin-left:0} }
+  </style>
+</head>
+<body>
+  <main class="card" role="main">
+    <div class="row">
+      <div class="logo">DB</div>
+      <div>
+        <h1>Devil's Bargain — Console RPG</h1>
+        <p class="lead">A dark, branching console adventure. Open your DevTools console (F12) to play the full experience.</p>
+      </div>
+
+      <div class="links" aria-hidden="true">
+        <!-- links kept as buttons styled separately; openLink is defined in script below -->
+        <button class="link-btn" onclick="openLink('https://github.com/hpx07')">GitHub</button>
+        <button class="link-btn" onclick="openLink('https://hpx07.netlify.app')">Portfolio</button>
+      </div>
+    </div>
+
+    <div class="instructions">
+      <div class="kbd">F12</div>
+      <div style="min-width:220px">
+        <strong>Open DevTools → Console</strong>
+        <div class="small-note">Then run <code>bargain()</code> to start. Use <code>rules()</code>, <code>choose(1)</code>, and <code>next()</code>.</div>
+      </div>
+      <div style="margin-left:auto" class="controls">
+        <button class="btn btn-primary" onclick="copyRunCommand()">Copy Run Command</button>
+        <button class="btn btn-ghost" onclick="showConsoleHint()">How to open console</button>
+      </div>
+    </div>
+
+    <p class="small-note">Gameplay summary: 4 chapters • karma (0–100) • 5 soul statuses • delayed consequences • 3 endings.</p>
+  </main>
+
+  <!-- Link to external JS (game logic) -->
+  <script src="index.js"></script>
+
+  <script>
+    // minimal helpers (global) so inline onclick works reliably
+    function openLink(url) {
+      window.open(url, "_blank", "noopener,noreferrer");
+    }
+
+    function copyRunCommand(){
+      const cmd = "bargain()";
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(cmd).then(()=> alert("Copied: " + cmd + " — open Console (F12) and paste it."));
+      } else {
+        prompt("Copy this command:", cmd);
+      }
+    }
+
+    function showConsoleHint(){
+      alert("Open DevTools (F12) then switch to the Console tab. Run: bargain()");
+    }
+
+    // Expose helpers so buttons can call them from inline handlers
+    window.openLink = openLink;
+    window.copyRunCommand = copyRunCommand;
+    window.showConsoleHint = showConsoleHint;
+  </script>
+</body>
+</html>

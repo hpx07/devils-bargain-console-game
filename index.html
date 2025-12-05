@@ -26,7 +26,14 @@
       background: linear-gradient(135deg, #ff6b6b, #ffb86b); color:#090909; box-shadow: 0 8px 30px rgba(255,107,107,0.08);}
     h1{margin:0;font-size:1.5rem}
     p.lead{margin:8px 0 0 0; color:var(--muted)}
-    .instructions{margin-top:18px; display:flex; gap:12px; align-items:center; flex-wrap:wrap}
+    
+    .instructions{
+      margin-top: 18px;
+    display: flex;
+    gap: 12px;
+    align-items: baseline;
+    flex-wrap: nowrap;
+    }
     .kbd{background:rgba(255,255,255,0.03); padding:8px 10px; border-radius:8px; font-family:var(--mono); color:var(--neon); font-weight:700; border:1px solid rgba(255,255,255,0.02)}
     .controls{margin-top:20px; display:flex; gap:12px; flex-wrap:wrap}
     .btn{cursor:pointer; padding:10px 14px; border-radius:10px; border:0; font-weight:700; font-family:var(--mono); letter-spacing:0.02em}
@@ -36,6 +43,110 @@
     .links {margin-left:auto; display:flex; gap:10px}
     .link-btn {background:transparent; border-radius:8px; padding:8px 10px; color:var(--neon); border:1px solid rgba(0,255,198,0.08); cursor:pointer; font-family:var(--mono)}
     @media (max-width:640px){ .row{flex-direction:column; align-items:flex-start} .links{margin-left:0} }
+
+    /* footer */
+     footer{
+      margin-top:20px;
+      color:#a6d9cc;
+      font-size:0.8rem;
+      opacity:0.9;
+    }
+
+    @media (max-width:560px){
+      .card{ padding:20px; }
+      h1{ font-size:1.25rem }
+      .logo{ width:56px; height:56px; }
+    }
+
+      .creative-footer {
+    margin-top: 70px;
+    padding: 40px 20px;
+    text-align: center;
+    color: #b1d6cc;
+    font-family: Inter, sans-serif;
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .footer-title {
+    font-size: 1.2rem;
+    margin-bottom: 22px;
+    opacity: 0.9;
+  }
+
+  .signature {
+    color: #00ffcc;
+    font-weight: 700;
+    text-shadow: 0 0 12px rgba(0,255,200,0.4);
+    animation: pulseName 2.4s infinite ease-in-out;
+  }
+
+  @keyframes pulseName {
+    0%,100% { opacity: 0.9; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+  }
+
+  .footer-buttons {
+    display: flex;
+    gap: 18px;
+    justify-content: center;
+    margin-bottom: 18px;
+  }
+
+  .btn-neo {
+    font-family: "SFMono-Regular", monospace;
+    border: none;
+    outline: none;
+    padding: 12px 24px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    border-radius: 10px;
+    background: rgba(0,255,200,0.07);
+    color: #78ffd6;
+    letter-spacing: 0.4px;
+    transition: 0.25s ease;
+    box-shadow:
+      0 0 0 rgba(0,255,200,0.0),
+      inset 0 0 0 rgba(0,255,200,0.0);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-neo:hover {
+    background: rgba(0,255,200,0.14);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow:
+      0 6px 22px rgba(0,255,200,0.18),
+      inset 0 0 14px rgba(0,255,200,0.18);
+  }
+
+  .btn-neo span {
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Glow ring animation */
+  .btn-neo::before {
+    content: "";
+    position: absolute;
+    width: 160%;
+    height: 160%;
+    top: -30%;
+    left: -30%;
+    background: radial-gradient(circle, rgba(0,255,200,0.25), transparent 60%);
+    animation: rotateGlow 6s linear infinite;
+    opacity: 0.2;
+  }
+
+  @keyframes rotateGlow {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  .foot-copy {
+    margin-top: 10px;
+    font-size: 0.8rem;
+    opacity: 0.75;
+  }
   </style>
 </head>
 <body>
@@ -45,12 +156,6 @@
       <div>
         <h1>Devil's Bargain — Console RPG</h1>
         <p class="lead">A dark, branching console adventure. Open your DevTools console (F12) to play the full experience.</p>
-      </div>
-
-      <div class="links" aria-hidden="true">
-        <!-- links kept as buttons styled separately; openLink is defined in script below -->
-        <button class="link-btn" onclick="openLink('https://github.com/hpx07')">GitHub</button>
-        <button class="link-btn" onclick="openLink('https://hpx07.netlify.app')">Portfolio</button>
       </div>
     </div>
 
@@ -68,7 +173,26 @@
 
     <p class="small-note">Gameplay summary: 4 chapters • karma (0–100) • 5 soul statuses • delayed consequences • 3 endings.</p>
   </main>
+  
+  <footer class="creative-footer">
+  <h3 class="footer-title">
+    Console experience by <a href="https://github.com/hpx07" target="_blank" class="signature" style="text-decoration:none; color:#00ffcc;">
+  HPX07(Preet)
+</a>
+  </h3>
 
+<div class="footer-buttons">
+  <button class="btn-neo" onclick="openLink('https://github.com/hpx07')">
+    <span>GitHub</span>
+  </button>
+
+  <button class="btn-neo" onclick="openLink('https://hpx07.netlify.app')">
+    <span>Portfolio</span>
+  </button>
+</div>
+    
+  <p class="foot-copy">© 2025 — All Rights Reserved.</p>
+</footer>
   <!-- Link to external JS (game logic) -->
   <script src="index.js"></script>
 

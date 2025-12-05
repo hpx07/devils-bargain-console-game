@@ -89,4 +89,4 @@ Your karma determines your fate:
 
 ---
 
-## 🛡️ Developer: (HPX07)[https://github.com/hpx07/]
+## 🛡️ Developer: [HPX07](https://github.com/hpx07/)
